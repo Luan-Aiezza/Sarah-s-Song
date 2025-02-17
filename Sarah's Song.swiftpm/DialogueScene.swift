@@ -141,7 +141,10 @@ class DialogueScene: SKScene {
                     let scaleDown = SKAction.scale(to: node.xScale * 0.8, duration: 0.1)
                     let scaleUp = SKAction.scale(to: node.xScale, duration: 0.1)
                     let wait = SKAction.wait(forDuration: 0.01)
+                    AudioManager.shared.playSoundClick()
+                    // Sequência de ações
                     let sequence = SKAction.sequence([scaleDown, scaleUp, wait])
+                                    
                     
                     nextButton.run(sequence)
                     

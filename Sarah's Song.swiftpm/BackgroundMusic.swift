@@ -4,6 +4,7 @@ class AudioManager {
     static let shared = AudioManager()
     
     public var backgroundMusicPlayer: AVAudioPlayer?
+    public var soundClick: AVAudioPlayer?
     public var fadeTimer: Timer?
 
     public init() {}
@@ -15,6 +16,16 @@ class AudioManager {
             backgroundMusicPlayer?.prepareToPlay()
             backgroundMusicPlayer?.volume = 1.0  // Volume inicial no máximo
             backgroundMusicPlayer?.play()
+        }
+    }
+    
+    func playSoundClick() {
+        if let url2 = Bundle.main.url(forResource: "ClickSound", withExtension: "mp3") {
+            soundClick = try? AVAudioPlayer(contentsOf: url2)
+            soundClick?.numberOfLoops = 1
+            soundClick?.prepareToPlay()
+            soundClick?.volume = 0.25  // Volume inicial no máximo
+            soundClick?.play()
         }
     }
     
