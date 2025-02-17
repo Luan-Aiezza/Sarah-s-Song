@@ -124,7 +124,7 @@ class PianoScene: SKScene {
         isPlayingMelody = true
 
         var delay: TimeInterval = 0
-        for (index, (note, duration)) in guidedMelody.enumerated() {
+        for (_, (note, duration)) in guidedMelody.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 if let key = self.keys[note] {
                     self.display(note: self.convertNoteToInternational(note))
