@@ -5,9 +5,10 @@ import CoreHaptics
 class PianoScene: SKScene {
     
     let guidedMelody: [(note: String, duration: TimeInterval)] = [
-        ("Dó", 0.5), ("Dó", 0.5), ("Ré", 0.5), ("Dó", 0.5), ("Fá", 0.5), ("Mi", 1.0),
-        ("Dó", 0.5), ("Dó", 0.5), ("Ré", 0.5), ("Dó", 0.5), ("Sol", 0.5), ("Fá", 1.0),
-        ("Dó", 0.5), ("Dó", 0.5), ("Dó2", 0.5), ("Lá", 0.5), ("Fá", 0.5), ("Mi", 0.5), ("Ré", 1.0)
+        ("Si", 0.5), ("Lá#", 0.5), ("Si", 0.5), ("Lá#", 0.5), ("Si", 0.5),
+        ("Fá", 0.5), ("Lá", 0.5), ("Sol", 0.5), ("Mi", 1), ("Dó", 0.5),
+        ("Mi", 0.5), ("Sol", 0.5), ("Lá", 1), ("Dó", 0.5), ("Mi", 0.5),
+        ("Lá", 0.5), ("Si", 1)
     ]
     
     var isPlayingMelody = false
@@ -123,15 +124,18 @@ class PianoScene: SKScene {
         isPlayingMelody = true
 
         var delay: TimeInterval = 0
-        for (note, duration) in guidedMelody {
+        for (index, (note, duration)) in guidedMelody.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 if let key = self.keys[note] {
                     self.display(note: self.convertNoteToInternational(note))
                     self.animateKeyPress(key: key, isPressed: true)
                     self.playSound(for: note)
                     self.playHaptic(for: note)
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                }
+                
+                // Garante que a tecla seja liberada antes da próxima nota ser tocada
+                DispatchQueue.main.asyncAfter(deadline: .now() + (duration * 0.8)) {
+                    if let key = self.keys[note] {
                         self.animateKeyPress(key: key, isPressed: false)
                     }
                 }
