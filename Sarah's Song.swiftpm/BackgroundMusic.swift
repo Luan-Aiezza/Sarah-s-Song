@@ -24,7 +24,7 @@ class AudioManager {
             soundClick = try? AVAudioPlayer(contentsOf: url2)
             soundClick?.numberOfLoops = 1
             soundClick?.prepareToPlay()
-            soundClick?.volume = 0.25  // Volume inicial no máximo
+            soundClick?.volume = 0.25
             soundClick?.play()
         }
     }
