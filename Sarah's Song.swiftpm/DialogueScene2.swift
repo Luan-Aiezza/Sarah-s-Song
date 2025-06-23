@@ -8,6 +8,7 @@ class DialogueScene2: SKScene {
     var nextButton: SKSpriteNode!
     var dialogueTexts: [String] = []
     var currentDialogueIndex: Int = 0
+    var nextButtonOriginalScale: CGFloat = 1.0
     
     
     
@@ -85,6 +86,7 @@ class DialogueScene2: SKScene {
         nextButton = SKSpriteNode(imageNamed: "NextButton1")
         nextButton.texture?.filteringMode = .nearest
         nextButton.setScale(size.width / 250)
+        nextButtonOriginalScale = nextButton.xScale
         nextButton.position = CGPoint(x: size.width * 0.85, y: dialogueBox.size.height * 0.32)
         nextButton.zPosition = 4
         nextButton.name = "nextButton"
@@ -132,6 +134,8 @@ class DialogueScene2: SKScene {
             
             for node in nodes {
                 if node.name == "nextButton" {
+                    
+                    nextButton.setScale(nextButtonOriginalScale)
                     
                     let scaleDown = SKAction.scale(to: node.xScale * 0.8, duration: 0.1)
                     let scaleUp = SKAction.scale(to: node.xScale, duration: 0.1)
