@@ -41,7 +41,7 @@ Requirements: an **iPhone with a Taptic Engine** (haptics do not work in the sim
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Luan-Aiezza/Sarah-s-Song.git
+   git clone https://github.com/Luan-Aiezza/SarahsSong.git
    ```
 2. Open `Sarah's Song.swiftpm` in **Xcode** or **Swift Playgrounds**.
 3. Select your iPhone and press **Run**.
